@@ -3,4 +3,5 @@
 Solutions to exercism.io in various programming languages. Current languages of interest:
 - Rust 🦀
 - OCaml 🐫
-- Zig 𝐙
+- Kotlin 🏝
+- Python 🐍 
