@@ -23,9 +23,9 @@ class InputCell:
 class ComputeCell:
     def __init__(self, inputs: List[InputCell], compute_function: Callable[[List[int]], int]):
         self._inputs = inputs
+        self._callbacks = set()
         self._fn: Callable[[List[int]], int] = compute_function
         self._value = self.recompute()
-        self._callbacks = set()
 
     @property
     def value(self) -> int:
@@ -35,6 +35,8 @@ class ComputeCell:
     def recompute(self) -> None:
         cells: List[int] = [cell.value for cell in self._inputs]
         self._value = self._fn(cells)
+        for callback in self._callbacks:
+            callback(self._value)
 
     def add_callback(self, callback):
         self._callbacks.add(callback)
